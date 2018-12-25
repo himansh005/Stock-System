@@ -11,6 +11,15 @@ SOLID, YAGNI and KISS principles have been applied to the best of my knowledge a
 >for running the tests:
 >python tests.py
 
+### Object-Oriented Design Components
+
+- **Exports** : contains the exporter method to store all results in a specified format in a data structure of choice
+- **Transactor** : contains the transact method to perform transaction on 2 quantities
+- **TransactionRoom**: contains the printOutput dictionary, provides method operation for each stock entry, method cleaner to     empty the queues at the end and method printer to print the results.
+- **Stock** : represents each individual stock
+- **Company** : represents each company providing their stock for buying or selling
+- **Companies** : represents the collection of companies present
+
 ### Algorithm
 
 ```
