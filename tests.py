@@ -53,12 +53,13 @@ class Test_TestStocks(unittest.TestCase):
 
                 tRoom.operation(company,stock)
 
-        for i in range(len(companies.cnames)):
+        for i in companies.companies:
             tRoom.cleaner(companies.companies[i])
         
-        expected_output = {1: '1 Buy ABC 10,0 CLOSED', 4: '4 Buy XYZ 10,0 CLOSED', 2: '2 Sell XYZ 15,0 CLOSED', 3: '3 Sell ABC 13,3 OPEN', 5: '5 Buy XYZ 8,3 OPEN'}
-        self.assertEqual(tRoom.printOutput,expected_output)
-
+        expected_output = {3: '3   Sell   ABC   13,3   OPEN', 1: '1   Buy   ABC   10,0   CLOSED', 4: '4   Buy   XYZ   10,0   CLOSED', 2: '2   Sell   XYZ   15,0   CLOSED',  5: '5   Buy   XYZ   8,3   OPEN'}
+        for i in range(len(tRoom.printOutput)):
+            self.assertEqual("".join((tRoom.printOutput[i+1]).split()),"".join((expected_output[i+1]).split()))
+    
         #test when only buy or sell stocks available
         companies=main.Companies()
         tRoom=main.TransactionRoom() 
@@ -78,11 +79,12 @@ class Test_TestStocks(unittest.TestCase):
 
                 tRoom.operation(company,stock)
 
-        for i in range(len(companies.cnames)):
+        for i in companies.companies:
             tRoom.cleaner(companies.companies[i])
 
-        expected_output = {3: '3 Sell ABC 80,80 OPEN', 5: '5 Sell ABC 10,10 OPEN', 1: '1 Sell ABC 10,10 OPEN', 2: '2 Sell ADS 10,10 OPEN', 4: '4 Sell XYZ 10,10 OPEN', 6: '6 Sell WQY 90,90 OPEN'}
-        self.assertEqual(tRoom.printOutput,expected_output)
+        expected_output = {3: '3    Sell   ABC 80,80 OPEN', 5: '5   Sell   ABC   10,10   OPEN', 1: '1   Sell   ABC   10,10   OPEN', 2: '2   Sell   ADS   10,10   OPEN', 4: '4   Sell   XYZ   10,10   OPEN', 6: '6   Sell   WQY   90,90   OPEN'}
+        for i in range(len(tRoom.printOutput)):
+            self.assertEqual("".join((tRoom.printOutput[i+1]).split()),"".join((expected_output[i+1]).split()))
 
 
     def test_exporter(self):
@@ -92,13 +94,13 @@ class Test_TestStocks(unittest.TestCase):
 
         stock = main.Stock(3,0,"Buy","ABC",10)
         exp.exporter(stock)
-        self.assertEqual(main.TransactionRoom.printOutput[3],"3 Buy ABC 10,0 CLOSED")
+        self.assertEqual("".join((main.TransactionRoom.printOutput[3]).split()),"3BuyABC10,0CLOSED")
 
         #quantity !=0
 
         stock = main.Stock(3,4,"Buy","ABC",10)
         exp.exporter(stock)
-        self.assertEqual(main.TransactionRoom.printOutput[3],"3 Buy ABC 10,4 OPEN")
+        self.assertEqual("".join((main.TransactionRoom.printOutput[3]).split()),"3BuyABC10,4OPEN")
 
 
 
