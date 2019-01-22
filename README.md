@@ -64,21 +64,41 @@ SOLID, YAGNI and KISS principles have been applied to the best of my knowledge a
                     Here, for each party, maximum of n-1 opposite parties need to be dequed
                     (example, if queue has n-1 sellers waiting, and buyers queue is empty, and new buyer comes
                     with buying power greater than or equal to sum of all selling power, maximum deques = n-1)
-
                     But, in this case, total computations are 1*(n-1) = n-1
-                    Overall, the computation are performed lineraly in best case, but worst case can go quadratic.
             
             e. transact takes - O(1)
             f. dequeing takes - O(n)
             
-            Complexity when considering the way of input:
-
-                   best case time complexity = O(n)
-                   average and worst case time complexity = O(n^2)
-                   
-            Complexity when NOT considering the way of input:
+            Considering having read all data points into the queue:
+            
+            Let, x - number of sellers in queue
+                 y - number of buyers in queue
+            
+            where: x+y = n
+            
+            Let B(x) = total sum of queue x
+                B(y) = total sum of queue y
+                
+            Also, total number of iteraitons is dependent on the queue which has smallest running sum.
+    
+            Now, the following case formulation holds while each transaction:
+                    If B(y) >= B(x):
                     
-                    time complexity = O(n)
+                       1. y=1 buyer and x sellers: 1.x = x iterations
+                       2. y=2 buyers and x sellers: 1.m + 1.(x-m) = x iterations
+                       .
+                       .
+                       Similarily, considerig division of x into k chunks, hence a1+a2+...+ak = x
+                       
+                       Therfore, for y buyers and x sellers: 1.a1 + 1.a2 + 1.a3 + ..... + 1.ak,(y times)
+                                                          = a1 + a2 +a3 + ..... +ak = x
+                       
+                    Else If B(y) <= B(x):
+                                 for y buyers and x sellers: 1.a1 + 1.a2 + 1.a3 + ..... + 1.al,(y times)
+                                                          = a1 + a2 +a3 + ..... +al = z (z<x)
+                                                          
+             Hence, z<x<n. Therefore, maximum iterations are n-1. 
+             Therefore, the time complexity is linear: O(n)
     
     2. Space Complexity - linear
 
