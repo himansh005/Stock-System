@@ -91,11 +91,11 @@ SOLID, YAGNI and KISS principles have been applied to the best of my knowledge a
                        Similarily, considerig division of x into k chunks, hence a1+a2+...+ak = x
                        
                        Therfore, for y buyers and x sellers: 1.a1 + 1.a2 + 1.a3 + ..... + 1.ak,(y times)
-                                                          = a1 + a2 +a3 + ..... +ak = x
+                                                          = a1 + a2 +a3 + ..... +ak = x iterations
                        
                     Else If B(y) <= B(x):
                                  for y buyers and x sellers: 1.a1 + 1.a2 + 1.a3 + ..... + 1.al,(y times)
-                                                          = a1 + a2 +a3 + ..... +al = z (z<x)
+                                                          = a1 + a2 +a3 + ..... +al = z iterations (z<x)
                                                           
              Hence, z<x<n. Therefore, maximum iterations are n-1. 
              Therefore, the time complexity is linear: O(n)
